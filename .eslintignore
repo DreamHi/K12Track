@@ -1,0 +1,7 @@
+/build/**
+/coverage/**
+/ci/**
+/node_modules/**
+/src/**/*.test.js
+config-overrides.js
+/src/setupTests.js

@@ -1,0 +1,9 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "rules": {
+    "no-descending-specificity": null,
+    "at-rule-empty-line-before": null,
+    "selector-list-comma-newline-after": null,
+    "block-no-empty": null
+  }
+}
