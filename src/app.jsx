@@ -12,6 +12,7 @@ import SHome from './modules/system/scenes/SHome';
 import STextBookList from './modules/english/scenes/STextBookList';
 import SPaperList from './modules/english/scenes/SPaperList';
 import SExamResultList from './modules/english/scenes/SExamResultList';
+import SExamResultDetail from './modules/english/scenes/SExamResultDetail';
 
 import './static/css/resetant.less';
 import './static/css/index.less';
@@ -29,6 +30,7 @@ import {
   ROUTE_ENGLISH_TEXTBOOK,
   ROUTE_ENGLISH_PAPAR,
   ROUTE_ENGLISH_RESULT,
+  ROUTE_ENGLISH_RESULT_DETAIL,
   ROUTE_ERROR,
 } from './utils/constants';
 
@@ -96,6 +98,7 @@ const App = () => {
           <PrivateRoute path={ROUTE_ENGLISH_TEXTBOOK} exact component={STextBookList} />
           <PrivateRoute path={ROUTE_ENGLISH_PAPAR} exact component={SPaperList} />
           <PrivateRoute path={ROUTE_ENGLISH_RESULT} exact component={SExamResultList} />
+          <PrivateRoute path={`${ROUTE_ENGLISH_RESULT_DETAIL}/:id`} exact component={SExamResultDetail} />
           <Route path={ROUTE_ERROR} exact component={SInternalServerError} />
           <Route path="*" component={SNotFound} />
         </Switch>

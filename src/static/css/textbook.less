@@ -1,15 +1,226 @@
 .textbook {
+  background: #fff;
   .list {
     display: inline-flex;
-
-    .ant-card {
+    a {
       width: 25%;
       margin: 12px;
+    }
+    .ant-card {
 
       .ant-card-body {
         text-align: center;
         padding: 16px;
       }
+    }
+  }
+}
+
+.question-preview {
+  .header {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 4px;
+
+    .time {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .q {
+      display: inline-block;
+      width: 80%;
+      text-align: center;
+
+      span {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        display: inherit;
+        text-align: center;
+        position: relative;
+        font-size: 18px;
+        margin: 4px;
+        color: black;
+        background: white;
+        border: 1px solid #1d39c4;
+        cursor: pointer;
+      }
+
+      .selected {
+        color: white;
+        background: #1d39c4;
+      }
+    }
+    .submit {
+      display: inline-block;
+      width: 10%;
+      text-align: right;
+    }
+  }
+  .question {
+    .title {
+      font-size: 24px;
+      text-align: center;
+      width: 819px;
+      margin: 0 auto;
+      padding-top: 16px;
+    }
+    .content {
+      width: 320px;
+      height: 320px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 5px;
+      padding-top: 60px;
+      .word-grid {
+        width: 17.5%;
+        height: 40px;
+        border: 2px dashed #8c9be5;
+        margin: 4px;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        user-select: none;
+      }
+      .word-grid:hover {
+        background: #b4bff5;
+        color: white;
+      }
+      .word-disabled {
+        background: #b4bff5;
+        color: white;
+        pointer-events: none;
+      }
+    }
+    .answer {
+      width: 819px;
+      height: 60px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 5px;
+      text-align: center;
+      .word-answer {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #e3e3e3;
+        margin: 4px;
+        text-align: center;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+
+        .w-bug {
+          position: absolute;
+          text-align: center;
+          height: 40px;
+          width: 40px;
+          line-height: 40px;
+          user-select: none;
+        }
+      }
+    }
+  }
+  .operation {
+    width: 819px;
+    margin: 0 auto;
+    margin-top: 16px;
+    text-align: center;
+    .ant-btn {
+      width: 200px;
+      height: 32px;
+      font-size: 18px;
+    }
+    .prev {
+      float: left;
+    }
+    
+    .process {
+      margin: 0 auto;
+      width: 50px;
+      line-height: 32px;
+      display: inline-block;
+    }
+    
+    .next {
+      float: right;
+    }
+  }
+}
+
+.exam-result-detail {
+  background: #fff;
+  padding-bottom: 24px;
+  .paper {
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    .detail {
+      font-size: 14px;
+      font-weight: normal;
+      span {
+        padding-right: 200px;
+      }
+    }
+    .score {
+      float: right;
+      right: 100px;
+      position: relative;
+      top: -100px;
+      color: red;
+      font-size: 100px;
+      font-weight: bold;
+      border-bottom: 4px solid red;
+      font-style: oblique;
+    }
+  }
+
+  .ant-list-item {
+    display: block;
+    padding: 12px;
+    width: 80%;
+    margin: 0 auto;
+    border: none;
+  }
+
+  .anticon-check {
+    font-size: 30px;
+    color: green;
+    font-weight: bold;
+    padding: 12px;
+  }
+
+  .anticon-close {
+    font-size: 30px;
+    color: red;
+    font-weight: bold;
+    padding: 12px;
+  }
+
+  .answers {
+    .title {
+      width: 100%;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    .answer {
+      width: 100%;
+      padding: 24px;
+      font-size: 16px;
+    }
+
+    .correct {
+      width: 100%;
+      padding: 12px;
+      background: aliceblue;
     }
   }
 }
