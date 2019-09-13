@@ -1,0 +1,20 @@
+{
+  "common.system.error": "A system error has occurred. Please contact the administrator.",
+  "common.db.create.error": "Failed to save.",
+  "common.db.create.success": "Saved successfully.",
+  "common.db.update.error": "Failed to update.",
+  "common.db.update.success": "Updated successfully.",
+  "common.db.delete.error": "Deleted successfully.",
+  "common.db.delete.success": "Deleted successfully.",
+  "common.db.search.error": "failed to search",
+  "common.file.upload.success": "Uploaded successfully.",
+  "common.file.upload.error": "Failed to upload",
+  "common.file.download.success": "Download successfully",
+  "common.file.download.error": "Failed to download",
+  "common.param.not.exist": "Required parameter does not exist.",
+  "common.param.invalid": "The parameter is incorrect.",
+  "common.param.type.invalid": "The parameter type is incorrect.",
+  "common.param.name.validator": "Should be combination of numbers & alphabets.",
+  "modules.system.user.login.error": "The user name or password is incorrect.",
+  "modules.system.token.error": "Please login."
+}

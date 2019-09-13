@@ -1,0 +1,20 @@
+{
+  "common.system.error": "系统错误发生。",
+  "common.db.create.error": "追加失败。",
+  "common.db.create.success": "追加成功。",
+  "common.db.update.error": "更新失败。",
+  "common.db.update.success": "更新成功。",
+  "common.db.delete.error": "删除失败。",
+  "common.db.delete.success": "删除成功。",
+  "common.db.search.error": "检索失败。",
+  "common.file.upload.success": "上传成功。",
+  "common.file.upload.error": "上传失败。",
+  "common.file.download.success": "下载成功。",
+  "common.file.download.error": "下载失败。",
+  "common.param.not.exist": "缺少必须的参数。",
+  "common.param.invalid": "非法的参数。",
+  "common.param.type.invalid": "参数类型不正确。",
+  "common.param.name.validator": "名字中只能包含数字和字母。",
+  "modules.system.user.login.error": "用户名或者密码不正确。",
+  "modules.system.token.error": "请重新登录。"
+}

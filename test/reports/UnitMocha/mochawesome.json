@@ -1,0 +1,123 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2019-09-08T10:37:59.296Z",
+    "end": "2019-09-08T10:37:59.304Z",
+    "duration": 8,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ac44ef75-5388-4099-94a9-a5f82e5ddc89",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5ae12108-8eb4-4298-8a13-d28fda99381d",
+          "title": "src/core/helper.js",
+          "fullFile": "/Users/sl_yang/sl_yang/hidream/K12Track/k12track_dev_server/test/unit/core/test_helper",
+          "file": "/test/unit/core/test_helper",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "902864f4-f1d4-4f78-a8fb-b71215bdedd6",
+              "title": "random()",
+              "fullFile": "/Users/sl_yang/sl_yang/hidream/K12Track/k12track_dev_server/test/unit/core/test_helper",
+              "file": "/test/unit/core/test_helper",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return random.",
+                  "fullTitle": "src/core/helper.js random() should return random.",
+                  "timedOut": false,
+                  "duration": 2,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const result = helper.random(20);\nconsole.log(result);\nshould.exist(result);",
+                  "err": {},
+                  "uuid": "e3eeb1ca-5f36-4d58-b3f8-46276938f767",
+                  "parentUUID": "902864f4-f1d4-4f78-a8fb-b71215bdedd6",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "e3eeb1ca-5f36-4d58-b3f8-46276938f767"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 120000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 120000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 120000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "6.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "test/reports/UnitMocha",
+        "reportName": "K12Track",
+        "reportTitle": "K12Track Mocha Report",
+        "inlineAssets": true
+      },
+      "version": "4.0.1"
+    }
+  }
+}

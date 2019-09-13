@@ -1,0 +1,20 @@
+{
+  "common.system.error": "システムエラーが発生しました。管理者へ連絡お願いいたします。",
+  "common.db.create.error": "新規に失敗しました。",
+  "common.db.create.success": "新規しました。",
+  "common.db.update.error": "更新に失敗しました。",
+  "common.db.update.success": "更新しました。",
+  "common.db.delete.error": "削除に失敗しました。",
+  "common.db.delete.success": "削除しました。",
+  "common.db.search.error": "検索に失敗しました。",
+  "common.file.upload.success": "アップロードしました。",
+  "common.file.upload.error": "アップロード失敗しました。",
+  "common.file.download.success": "ダウンロードました。",
+  "common.file.download.error": "ダウンロード失敗しました。",
+  "common.param.not.exist": "必要なパラメターが存在しません。",
+  "common.param.invalid": "パラメターが正しくない。",
+  "common.param.type.invalid": "パラメターのタイプが正しくない。",
+  "common.param.name.validator": "名前に「;:,\"」を含む記号は入力できません。",
+  "modules.system.user.login.error": "ユーザ名またはパスワードは正しくない。",
+  "modules.system.token.error": "ログインしてください。"
+}

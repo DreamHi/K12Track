@@ -1,0 +1,36 @@
+{
+  "appenders": {
+    "console": {
+      "type": "console"
+    },
+    "application": {
+      "type": "dateFile",
+      "filename": "logs/application.log",
+      "pattern": "-yyyyMMdd"
+    },
+    "error": {
+      "type": "dateFile",
+      "filename": "logs/error.log",
+      "pattern": "-yyyyMMdd",
+      "category": "error"
+    },
+    "access": {
+      "type": "dateFile",
+      "filename": "logs/access.log",
+      "pattern": "-yyyyMMdd",
+      "category": "access"
+    },
+    "operation": {
+      "type": "dateFile",
+      "filename": "logs/operation.log",
+      "pattern": "-yyyyMMdd",
+      "category": "operation"
+    }
+  },
+  "categories": {
+    "default": { "appenders": [ "console", "application"], "level": "DEBUG" },
+    "error": { "appenders": [ "error"], "level": "DEBUG" },
+    "access": { "appenders": [ "access"], "level": "INFO" },
+    "operation": { "appenders": [ "operation"], "level": "INFO" }
+  }
+}
