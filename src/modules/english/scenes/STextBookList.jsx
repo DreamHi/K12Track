@@ -35,7 +35,7 @@ const STextBookList = () => {
         <div className="list">
           {textBookList.map(t => {
             return (
-              <Link to={`${ROUTE_ENGLISH_PAPAR}?grade=${t.grade}`}>
+              <Link key={t._id} to={`${ROUTE_ENGLISH_PAPAR}?grade=${t.grade}`}>
                 <Card key={t._id} hoverable cover={<img alt="example" src={t.imgURL} />}>
                   <Meta title={t.grade} />
                 </Card>

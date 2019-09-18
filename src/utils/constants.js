@@ -17,3 +17,6 @@ export const API_EXAM_LIST = '/english/exams';
 export const API_EXAM_COUNT = '/english/exams/count';
 export const API_EXAM_GET = '/english/exam';
 export const API_WORD_REC = '/english/word/recognize';
+
+export const QUESTION_TYPES_RANDOM = 'randomWord';
+export const QUESTION_TYPES_RECOGNIZE = 'recognizeWord';

@@ -66,3 +66,7 @@ export function find(arr, obj) {
   if (!arr || arr.length === 0) return [];
   return arr.find(a => objectEquals(a, obj));
 }
+
+export function isArray(obj) {
+  return Array.isArray(obj);
+}

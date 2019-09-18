@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import qs from 'query-string';
-// import Recorder from 'js-audio-recorder';
 import { Breadcrumb, Table, Button, Divider, Modal, message } from 'antd';
 
-import CQuestion from '../components/CQuestion';
+import CQuestionRandom from '../components/CQuestionRandom';
+import CQuestionRecognize from '../components/CQuestionRecognize';
 
 import {
   API_PAPER_LIST,
@@ -14,11 +14,11 @@ import {
   ROUTE_ENGLISH_TEXTBOOK,
   ROUTE_ENGLISH_RESULT,
   ROUTE_ENGLISH_RESULT_DETAIL,
+  QUESTION_TYPES_RANDOM,
+  QUESTION_TYPES_RECOGNIZE,
 } from '../../../utils/constants';
 import { post, get } from '../../../utils/fetch';
-import { forEach, generateUUID } from '../../../utils/helper';
-
-// let recorder;
+import { forEach, generateUUID, isArray } from '../../../utils/helper';
 
 const SPaperList = props => {
   const [paperList, setPaperList] = useState({});
@@ -27,9 +27,9 @@ const SPaperList = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
 
-  const { grade } = qs.parse(props.location.search);
   const getList = async () => {
     try {
+      const { grade } = qs.parse(props.location.search);
       const res = await post(API_PAPER_LIST, { grade });
       setPaperList(res);
     } catch (err) {
@@ -42,12 +42,18 @@ const SPaperList = props => {
       const res = await get(`${API_PAPER_GET}/${qId}`);
       const initAnswer = {};
       forEach(res.questions, (q, index) => {
-        initAnswer[index] = new Array(q.length).fill('');
-        const newQ = q.randomWord.split('');
-        // eslint-disable-next-line no-param-reassign
-        q.randomWordObj = newQ.map(w => {
-          return { value: w, disabled: false };
-        });
+        if (q.type === QUESTION_TYPES_RANDOM) {
+          initAnswer[index] = new Array(q.length).fill('');
+          const newQ = q.randomWord.split('');
+          // eslint-disable-next-line no-param-reassign
+          q.randomWordObj = newQ.map(w => {
+            return { value: w, disabled: false };
+          });
+        }
+
+        if (q.type === QUESTION_TYPES_RECOGNIZE) {
+          initAnswer[index] = '';
+        }
       });
 
       setExam(res);
@@ -106,6 +112,11 @@ const SPaperList = props => {
     }
   };
 
+  const handleAnswerChange = a => {
+    answers[currentIndex] = a;
+    setAnswers({ ...answers });
+  };
+
   const handleSubmit = async () => {
     try {
       const rs = await post(API_EXAM_POST, { paper: exam, answers });
@@ -118,7 +129,7 @@ const SPaperList = props => {
 
   useEffect(() => {
     getList();
-  }, []);
+  }, [getList]);
 
   const columns = [
     {
@@ -185,29 +196,6 @@ const SPaperList = props => {
     },
   ];
 
-  // const start = async () => {
-  //   recorder = new Recorder({
-  //     sampleBits: 16,
-  //     sampleRate: 16000,
-  //     numChannels: 1,
-  //   });
-  //   recorder.start();
-  // };
-
-  // const stop = async () => {
-  //   // eslint-disable-next-line no-unused-expressions
-  //   recorder && recorder.stop();
-  //   const blob = recorder.getPCMBlob();
-  //   const formData = new FormData();
-  //   formData.append('files', blob);
-  //   try {
-  //     const rs = await post(API_WORD_REC, formData);
-  //     console.log(rs);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
   const { length } = exam.questions || [];
   const q = exam.questions && exam.questions[currentIndex];
 
@@ -243,12 +231,12 @@ const SPaperList = props => {
               <div className="time">题号：</div>
               <div className="q">
                 {Object.values(answers).map((a, i) => {
+                  let aStr = a;
+                  if (isArray(a)) {
+                    aStr = a.join('');
+                  }
                   return (
-                    <span
-                      key={generateUUID()}
-                      className={a.join('').length > 0 ? 'selected' : ''}
-                      onClick={() => setCurrentIndex(i)}
-                    >
+                    <span key={generateUUID()} className={aStr ? 'selected' : ''} onClick={() => setCurrentIndex(i)}>
                       {i + 1}
                     </span>
                   );
@@ -261,13 +249,21 @@ const SPaperList = props => {
               </div>
             </div>
             <div className="question">
-              {q && (
-                <CQuestion
+              {q && q.type === QUESTION_TYPES_RANDOM && (
+                <CQuestionRandom
                   key={q._id}
                   value={q}
                   answer={answers[currentIndex]}
                   onClick={handleAnswerClick}
                   onSelect={handleAnswerSelect}
+                />
+              )}
+              {q && q.type === QUESTION_TYPES_RECOGNIZE && (
+                <CQuestionRecognize
+                  key={q._id}
+                  value={q}
+                  answer={answers[currentIndex]}
+                  onChange={handleAnswerChange}
                 />
               )}
             </div>

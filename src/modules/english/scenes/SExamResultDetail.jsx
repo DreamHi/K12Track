@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { List, message, Icon, Breadcrumb } from 'antd';
 
-import { API_EXAM_GET, ROUTE_ENGLISH_RESULT, ROUTE_ENGLISH_TEXTBOOK } from '../../../utils/constants';
+import {
+  API_EXAM_GET,
+  ROUTE_ENGLISH_RESULT,
+  ROUTE_ENGLISH_TEXTBOOK,
+  QUESTION_TYPES_RANDOM,
+} from '../../../utils/constants';
 import { get } from '../../../utils/fetch';
 
 const SExamResultDetail = props => {
@@ -22,7 +27,7 @@ const SExamResultDetail = props => {
 
   useEffect(() => {
     getDetail();
-  }, []);
+  }, [getDetail]);
 
   const { questions, paper, updatedAt, score } = examResultDetail;
 
@@ -53,16 +58,19 @@ const SExamResultDetail = props => {
             dataSource={questions || []}
             renderItem={(item, i) => {
               let icon = null;
-              const { question, answer } = item;
+              const { question, answer, type } = item;
               if (answer.toLowerCase() === question.word.toLowerCase()) {
                 icon = <Icon type="check" />;
               } else {
                 icon = <Icon type="close" />;
               }
+
+              const qTypeStr = type === QUESTION_TYPES_RANDOM ? '单词拼写' : '单词翻译';
+              const aStr = type === QUESTION_TYPES_RANDOM ? question.meaning : question.word;
               return (
                 <List.Item>
                   <div className="title">
-                    {icon} {`题目${i + 1}：${question.meaning}`}
+                    {icon} {`【${qTypeStr}】题目${i + 1}：${aStr}`}
                   </div>
                   <div className="answer">
                     <strong>答案：</strong>
@@ -80,6 +88,7 @@ const SExamResultDetail = props => {
                     <h4>
                       [单词] {question.word}　{question.phoneticSymbol}
                     </h4>
+                    <h4>[词义] {question.meaning}</h4>
                     <h4>[例句] {question.example}</h4>
                   </div>
                 </List.Item>
