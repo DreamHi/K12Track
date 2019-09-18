@@ -21,3 +21,7 @@ exports.SCHEMA_EXAM_RESULT     = "ExamResult"; // 试卷结果
 
 
 exports.RANDOM_WORD_LENGTH     = 20;
+
+
+exports.QUESTION_TYPES_RANDOM = 'randomWord';
+exports.QUESTION_TYPES_RECOGNIZE = 'recognizeWord';

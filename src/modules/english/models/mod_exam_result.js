@@ -10,6 +10,7 @@ const ExamResult = new BaseSchema({
   questions:        [{
     question:       { type: Mixed, description: "试卷ID" },
     answer:         { type: String, description: "回答内容" },
+    type:           { type: String, description: "题型" },
   }],
   score:            { type: Number, description: "考试成绩" },
 });

@@ -6,6 +6,8 @@ const parse       = require("csv-parse");
 const iconv       = require("iconv-lite");
 const config      = require("../../config/app");
 
+const { QUESTION_TYPES_RANDOM, QUESTION_TYPES_RECOGNIZE } = require("../core/constant");
+
 exports.ip = () => {
   if (global.addresses) {
     return global.addresses;
@@ -100,4 +102,9 @@ exports.currentDate = () => {
 
 exports.today = () => {
   return new Date();
+};
+
+exports.generateRandomQuestionType = () => {
+  const random = _.random(0, 1);
+  return random === 0 ? QUESTION_TYPES_RANDOM : QUESTION_TYPES_RECOGNIZE;
 };

@@ -11,13 +11,13 @@ const ExamResultSchema  = require("../models/mod_exam_result");
 const Baidu             = require("../../system/controllers/ctrl_baidu");
 
 const { DB_NAME_K12TRACK, SCHEMA_WORD, SCHEMA_PAPER, SCHEMA_TEXTBOOK, SCHEMA_EXAM_RESULT,
-  MOD_FIND_ALL, RANDOM_WORD_LENGTH } = constant;
+  MOD_FIND_ALL, RANDOM_WORD_LENGTH, QUESTION_TYPES_RANDOM, QUESTION_TYPES_RECOGNIZE } = constant;
 const WordModel = new Model(DB_NAME_K12TRACK, SCHEMA_WORD, WordSchema);
 const PaperModel = new Model(DB_NAME_K12TRACK, SCHEMA_PAPER, PaperSchema);
 const TextbookModel = new Model(DB_NAME_K12TRACK, SCHEMA_TEXTBOOK, TextbookSchema);
 const ExamResultModel = new Model(DB_NAME_K12TRACK, SCHEMA_EXAM_RESULT, ExamResultSchema);
 
-const { today } = helper;
+const { today, generateRandomQuestionType } = helper;
 
 exports.getTextBook = async (req) => {
   log.info("word.getTextBook() start.", req.user);
@@ -71,12 +71,22 @@ exports.getPaperAndQuestions = async (req) => {
 
     _.each(randomIndex, (i) => {
       const q = questions[i];
-      qArray.push({
-        meaning: q.meaning,
-        randomWord: helper.randomWord(q.word, RANDOM_WORD_LENGTH),
-        length: q.word.length,
+      const qType = generateRandomQuestionType();
+      const qObj = {
         id: q._id.toString(),
-      });
+        type: qType,
+      };
+      const word = _.trim(q.word);
+      if (qType === QUESTION_TYPES_RANDOM) {
+        qObj.meaning = q.meaning;
+        qObj.randomWord = helper.randomWord(word, RANDOM_WORD_LENGTH);
+        qObj.length = word.length;
+      }
+
+      if (qType === QUESTION_TYPES_RECOGNIZE) {
+        qObj.word = word;
+      }
+      qArray.push(qObj);
     });
     log.info("word.getPaperAndQuestions() end.", req.user);
     log.operation("getPaperAndQuestions", "getPaperAndQuestions success!", req.user);
@@ -157,15 +167,26 @@ exports.answerPaper = async (req) => {
 
     let correctCount = 0;
     _.each(paper.questions, (q, i) => {
-      const a = answers[i].join('').toLowerCase();
+      let a = '';
+      if (q.type === QUESTION_TYPES_RECOGNIZE) {
+        a = answers[i].toString();
+        if (qListObj[q.id] && _.startsWith(qListObj[q.id].meaning, a)) {
+          correctCount += 1;
+        }
+      }
+
+      if (q.type === QUESTION_TYPES_RANDOM) {
+        a = answers[i].join('').toLowerCase();
+        if (qListObj[q.id] && qListObj[q.id].word.toLowerCase() === a) {
+          correctCount += 1;
+        }
+      }
+
       const tempObj = {
         question: qListObj[q.id],
         answer: a,
+        type: q.type,
       };
-      if (qListObj[q.id] && qListObj[q.id].word.toLowerCase() === a) {
-        correctCount += 1;
-      }
-
       newObj.questions.push(tempObj);
     });
 
