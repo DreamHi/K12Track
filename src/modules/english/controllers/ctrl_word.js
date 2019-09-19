@@ -166,12 +166,17 @@ exports.answerPaper = async (req) => {
     });
 
     let correctCount = 0;
-    _.each(paper.questions, (q, i) => {
+    _.each(paper.questions, async (q, i) => {
       let a = '';
+      let isRight = false;
       if (q.type === QUESTION_TYPES_RECOGNIZE) {
         a = answers[i].toString();
-        if (qListObj[q.id] && _.startsWith(qListObj[q.id].meaning, a)) {
-          correctCount += 1;
+        if (qListObj[q.id] && a) {
+          const score = await Baidu.simnet(qListObj[q.id].meaning, a);
+          if (score > 0.6) {
+            correctCount += 1;
+            isRight = true;
+          }
         }
       }
 
@@ -179,6 +184,7 @@ exports.answerPaper = async (req) => {
         a = answers[i].join('').toLowerCase();
         if (qListObj[q.id] && qListObj[q.id].word.toLowerCase() === a) {
           correctCount += 1;
+          isRight = true;
         }
       }
 
@@ -186,6 +192,7 @@ exports.answerPaper = async (req) => {
         question: qListObj[q.id],
         answer: a,
         type: q.type,
+        isRight,
       };
       newObj.questions.push(tempObj);
     });
