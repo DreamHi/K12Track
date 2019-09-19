@@ -58,8 +58,8 @@ const SExamResultDetail = props => {
             dataSource={questions || []}
             renderItem={(item, i) => {
               let icon = null;
-              const { question, answer, type } = item;
-              if (answer.toLowerCase() === question.word.toLowerCase()) {
+              const { question, answer, type, isRight } = item;
+              if (isRight) {
                 icon = <Icon type="check" />;
               } else {
                 icon = <Icon type="close" />;
