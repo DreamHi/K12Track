@@ -27,7 +27,7 @@ const SExamResultDetail = props => {
 
   useEffect(() => {
     getDetail();
-  }, [getDetail]);
+  }, []);
 
   const { questions, paper, updatedAt, score } = examResultDetail;
 

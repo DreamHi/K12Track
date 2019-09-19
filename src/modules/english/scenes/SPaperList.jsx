@@ -129,7 +129,7 @@ const SPaperList = props => {
 
   useEffect(() => {
     getList();
-  }, [getList]);
+  }, []);
 
   const columns = [
     {
